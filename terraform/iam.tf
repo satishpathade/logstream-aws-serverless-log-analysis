@@ -15,13 +15,11 @@ data "aws_iam_policy_document" "lambda_trust" {
 }
 
 resource "aws_iam_role" "logstream_lambda" {
-  name = "logstream-lambda-role-dev"
-
+  name               = "logstream-lambda-role"
   assume_role_policy = data.aws_iam_policy_document.lambda_trust.json
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
-  role = aws_iam_role.logstream_lambda.name
-
+  role       = aws_iam_role.logstream_lambda.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
