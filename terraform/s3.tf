@@ -4,8 +4,8 @@ resource "aws_s3_bucket" "frontend" {
   bucket = var.bucket_name
 
   tags = {
-    Name        = "${var.project_name}-frontend"
-    Project     = var.project_name
+    Name    = "${var.project_name}-frontend"
+    Project = var.project_name
   }
 }
 
@@ -19,7 +19,7 @@ resource "aws_s3_bucket_ownership_controls" "frontend" {
 
 # Public Access Block
 resource "aws_s3_bucket_public_access_block" "frontend" {
-  bucket = aws_s3_bucket.frontend.id
+  bucket                  = aws_s3_bucket.frontend.id
   block_public_acls       = false
   ignore_public_acls      = false
   block_public_policy     = false
@@ -57,8 +57,8 @@ resource "aws_s3_bucket_policy" "frontend" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "PublicRead"
-        Effect = "Allow"
+        Sid       = "PublicRead"
+        Effect    = "Allow"
         Principal = "*"
         Action = [
           "s3:GetObject"
