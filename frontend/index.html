@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogStream | AI Powered Log Analysis</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>LogStream</h1>
+            <p>AI Powered Serverless Log Analysis Platform</p>
+        </div>
+
+        <button id="refreshBtn">
+            Refresh Logs
+        </button>
+    </header>
+
+
+    <main>
+        <!-- Summary Cards -->
+        <section class="cards">
+            <div class="card">
+                <h3>Total Logs</h3>
+                <span id="totalLogs">0</span>
+            </div>
+
+            <div class="card">
+                <h3>Errors</h3>
+                <span id="errorLogs">0</span>
+            </div>
+
+            <div class="card">
+                <h3>Warnings</h3>
+                <span id="warningLogs">0</span>
+            </div>
+
+            <div class="card">
+                <h3>Critical</h3>
+                <span id="criticalLogs">0</span>
+            </div>
+
+        </section>
+
+
+        <!-- Filters -->
+        <section class="filters">
+
+            <input type="text" id="searchInput" placeholder="Search logs...">
+
+            <select id="severityFilter" aria-label="Severity filter">
+                <option value="">All Severity</option>
+                <option value="INFO">INFO</option>
+                <option value="WARNING">WARNING</option>
+                <option value="ERROR">ERROR</option>
+                <option value="CRITICAL">CRITICAL</option>
+            </select>
+
+            <select id="sourceFilter" aria-label="Source filter">
+                <option value="">All Sources</option>
+            </select>
+
+        </section>
+
+
+        <!-- Log Table -->
+        <section class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Source</th>
+                        <th>Severity</th>
+                        <th>Category</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody id="logsTable">
+                </tbody>
+            </table>
+
+            <div id="emptyState">
+                No logs available.
+            </div>
+        </section>
+
+        <!-- Details -->
+        <section class="details">
+            <div class="panel">
+                <h2>Log Details</h2>
+                <div id="logDetails">
+                    Select a log to view details.
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>AI Analysis</h2>
+
+                <div id="aiDetails">
+                    AI analysis is not available yet.
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Charts -->
+        <section class="charts">
+            <div class="chart-card">
+                <h2>Severity Distribution</h2>
+                <canvas id="severityChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h2>Log Source Distribution</h2>
+                <canvas id="sourceChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            © 2026 LogStream | AI Powered Serverless Log Analysis
+        </p>
+
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
