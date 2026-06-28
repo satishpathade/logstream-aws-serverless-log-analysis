@@ -2,6 +2,7 @@ import json
 import gzip
 import base64
 import boto3
+from datetime import datetime
 
 dynamodb = boto3.resource("dynamodb")
 table = dynamodb.Table("logstream-log")
@@ -9,29 +10,39 @@ table = dynamodb.Table("logstream-log")
 
 def lambda_handler(event, context):
 
+    # Decode CloudWatch Logs payload
     compressed_payload = base64.b64decode(event["awslogs"]["data"])
     uncompressed_payload = gzip.decompress(compressed_payload)
     log_data = json.loads(uncompressed_payload)
 
+    # CloudWatch Log Group
+    log_group = log_data.get("logGroup", "Unknown")
+
     for log_event in log_data["logEvents"]:
 
-        message = log_event["message"]
+        message = log_event["message"].strip()
 
-        # log level
+        # Detect Log Level
         if message.startswith("ERROR"):
             level = "ERROR"
         elif message.startswith("WARNING"):
             level = "WARNING"
+        elif message.startswith("CRITICAL"):
+            level = "CRITICAL"
         else:
             level = "INFO"
 
+        # Remove log level from the message
         clean_message = message.split(" ", 1)[1] if " " in message else message
 
+        # Store log in DynamoDB
         table.put_item(
             Item={
                 "log_id": log_event["id"],
-                "timestamp": str(log_event["timestamp"]),
-                "source": "test",
+                "timestamp": datetime.fromtimestamp(
+                    log_event["timestamp"] / 1000
+                ).strftime("%Y-%m-%d %H:%M:%S"),
+                "source": log_group,
                 "level": level,
                 "category": "Unknown",
                 "message": clean_message
@@ -42,5 +53,7 @@ def lambda_handler(event, context):
 
     return {
         "statusCode": 200,
-        "body": "Logs stored successfully"
+        "body": json.dumps({
+            "message": "Logs stored successfully"
+        })
     }
