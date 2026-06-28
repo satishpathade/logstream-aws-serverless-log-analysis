@@ -1,0 +1,412 @@
+/* LogStream Dashboard Styles */
+
+:root {
+  --bg: #0b1220;
+  --bg2: #111a2d;
+  --surface: rgba(19, 29, 49, .72);
+  --card: #17233b;
+  --border: rgba(255, 255, 255, .08);
+  --text: #eef4ff;
+  --muted: #9db0d1;
+  --primary: #4f8cff;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --critical: #b91c1c;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  --radius: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top right, #1f3d73 0%, transparent 30%),
+    radial-gradient(circle at bottom left, #153a4a 0%, transparent 28%),
+    var(--bg);
+  min-height: 100vh;
+}
+
+/* Animated background */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .18;
+  background:
+    linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .08)25%, transparent 26%),
+    linear-gradient(transparent 24%, rgba(255, 255, 255, .08)25%, transparent 26%);
+  background-size: 80px 80px;
+  animation: gridMove 16s linear infinite;
+}
+
+@keyframes gridMove {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(80px);
+  }
+}
+
+/* Header */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 7%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  background: rgba(11, 18, 32, .65);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.logo p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: .95rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), #315dd8);
+  transition: .3s;
+  box-shadow: 0 10px 20px rgba(79, 140, 255, .25);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px rgba(79, 140, 255, .4);
+}
+
+/* Layout */
+
+main {
+  width: min(1400px, 92%);
+  margin: 35px auto;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow);
+  transition: .35s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: auto -60px -60px auto;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: rgba(79, 140, 255, .18);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(79, 140, 255, .45);
+}
+
+.card h3 {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.card span {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+/* Filters */
+
+.filters {
+  margin: 32px 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 18px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  font-size: .95rem;
+  transition: .3s;
+}
+
+input::placeholder {
+  color: var(--muted);
+}
+
+input:focus,
+select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(79, 140, 255, .15);
+}
+
+/* Table */
+
+.table-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #1a2744;
+}
+
+th {
+  text-align: left;
+  padding: 18px;
+  font-size: .9rem;
+  color: #cfe0ff;
+}
+
+td {
+  padding: 18px;
+  border-top: 1px solid rgba(255, 255, 255, .05);
+  color: #dbe8ff;
+}
+
+tbody tr {
+  transition: .25s;
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background: rgba(79, 140, 255, .08);
+}
+
+/* Severity badges */
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+.info {
+  background: #1d4ed8;
+}
+
+.warning {
+  background: var(--warning);
+}
+
+.error {
+  background: var(--danger);
+}
+
+.critical {
+  background: var(--critical);
+}
+
+#emptyState {
+  display: none;
+  padding: 40px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Panels */
+
+.details,
+.charts {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 24px;
+}
+
+.panel,
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow);
+  animation: fadeUp .8s ease;
+}
+
+.panel h2,
+.chart-card h2 {
+  margin-bottom: 18px;
+}
+
+#logDetails,
+#aiDetails {
+  color: var(--muted);
+  line-height: 1.8;
+  word-break: break-word;
+}
+
+canvas {
+  width: 100% !important;
+  max-height: 320px;
+}
+
+/* Loading spinner */
+
+.loader {
+  width: 52px;
+  height: 52px;
+  border: 5px solid rgba(255, 255, 255, .15);
+  border-top: 5px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 30px auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #34558f;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1627;
+}
+
+/* Footer */
+
+footer {
+  margin: 40px 0 20px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Responsive */
+
+@media(max-width:900px) {
+
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .details,
+  .charts {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .card span {
+    font-size: 1.8rem;
+  }
+
+}
+
+@media(max-width:550px) {
+
+  main {
+    width: 95%;
+  }
+
+  .logo h1 {
+    font-size: 1.6rem;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  header {
+    padding: 20px;
+  }
+
+}
