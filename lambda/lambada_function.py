@@ -2,11 +2,12 @@ import json
 import gzip
 import base64
 import boto3
+import os
 from datetime import datetime
 
 dynamodb = boto3.resource("dynamodb")
-table = dynamodb.Table("logstream-log")
-
+TABLE_NAME = os.environ["TABLE_NAME"]
+table = dynamodb.Table(TABLE_NAME)
 
 def lambda_handler(event, context):
 
@@ -32,7 +33,6 @@ def lambda_handler(event, context):
         else:
             level = "INFO"
 
-        # Remove log level from the message
         clean_message = message.split(" ", 1)[1] if " " in message else message
 
         # Store log in DynamoDB
