@@ -2,11 +2,15 @@
 
 ## Overview
 
-LogStream is a serverless log analysis platform built on AWS that collects application logs, processes them using AWS Lambda, stores them in Amazon DynamoDB, and visualizes them through a modern web dashboard.
+LogStream is a serverless log analysis platform built on AWS. It collects application logs, processes them with AWS Lambda, stores them in Amazon DynamoDB, and visualizes them through a web dashboard.
 
 The project is designed to evolve into an AI-powered observability platform capable of automatically analyzing logs, identifying root causes, detecting anomalies, and providing remediation suggestions.
 
 ---
+
+## Architecture
+
+**CloudWatch - Lambda (Log Processor) - DynamoDB - Lambda (API) - API Gateway - S3 Static Website**
 
 ## Features
 
@@ -21,13 +25,6 @@ The project is designed to evolve into an AI-powered observability platform capa
 - Secure access management with AWS IAM
 - Static web dashboard hosted on Amazon S3
 
----
-
-## Architecture
-
-
-**CloudWatch - Lambda (Log Processor) - DynamoDB - Lambda (API) - API Gateway - S3 Static Website**
-
 ## Tech Stack
 
 ### AWS Services
@@ -41,23 +38,30 @@ The project is designed to evolve into an AI-powered observability platform capa
 | **Amazon API Gateway** | Exposes REST APIs for the frontend to retrieve logs |
 | **AWS IAM** | Manages roles and permissions for Lambda and other AWS resources |
 
-### static website
-| **Frontend** | HTML5, CSS3, JavaScript (ES6), Chart.js |
-| **AI (Planned)** | Amazon Bedrock / OpenAI API |
+### Application Layer
+
+| Layer | Technology |
+|---------|---------|
+| Frontend | HTML5, CSS3, JavaScript (ES6), Chart.js |
+| AI (Planned)Amazon Bedrock / OpenAI API |
 
 ## Future Improvements
 
 - AI-powered log summarization
+- Intelligent log categorization
 - Root cause analysis
 - Anomaly detection
 - Severity prediction
-- Smart recommendations
-- Authentication
-- Export logs (CSV/PDF)
-- Real-time log streaming
-- CloudWatch Metrics integration
-- Multi-service log aggregation
-- Email and Slack notifications
-- Bedrock/OpenAI integration
+- Failure pattern recognition
+- AI-generated remediation recommendations
+- Natural language log search
+- AI-powered incident insights
+- Amazon Bedrock / OpenAI integration
 
 ---
+
+## Author
+
+**Satish Pathade**  
+AWS Cloud & DevOps Engineer  
+Email: [pathadesatish0@gmail.com](mailto:pathadesatish0@gmail.com)
