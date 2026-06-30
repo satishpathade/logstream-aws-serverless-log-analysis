@@ -7,7 +7,7 @@ The project is designed to evolve into an AI-powered observability platform capa
 ---
 
 ## Architecture
-![logstrem-architectire](logstrem-architecture.png)
+![logstream-architectire](architecture/logstream-architecture.png)
 
 **CloudWatch - Lambda (Log Processor) - DynamoDB - Lambda (API) - API Gateway - S3 Static Website**
 
