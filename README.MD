@@ -1,7 +1,5 @@
 # LogStream - AI Powered AWS Serverless Log Analysis
 
-## Overview
-
 LogStream is a serverless log analysis platform built on AWS. It collects application logs, processes them with AWS Lambda, stores them in Amazon DynamoDB, and visualizes them through a web dashboard.
 
 The project is designed to evolve into an AI-powered observability platform capable of automatically analyzing logs, identifying root causes, detecting anomalies, and providing remediation suggestions.
@@ -9,6 +7,7 @@ The project is designed to evolve into an AI-powered observability platform capa
 ---
 
 ## Architecture
+![logstrem-architectire](logstrem-architecture.png)
 
 **CloudWatch - Lambda (Log Processor) - DynamoDB - Lambda (API) - API Gateway - S3 Static Website**
 
